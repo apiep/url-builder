@@ -1,0 +1,15 @@
+{
+  "name": "@apiep/url-builder",
+  "version": "1.0.0",
+  "description": "Utility to made query parameter simple",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:apiep/url-builder.git",
+    "type": "git"
+  },
+  "author": "Afief S <apiep.oedin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.16.4"
+  }
+}
