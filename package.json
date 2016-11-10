@@ -10,6 +10,10 @@
   "author": "Afief S <apiep.oedin@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "jest": "^17.0.0",
     "lodash": "^4.16.4"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }

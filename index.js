@@ -1,35 +1,42 @@
 var _ = require('lodash')
+var filter = require('lodash/fp/filter')
+var reduce = require('lodash/fp/reduce')
+var join = require('lodash/fp/join')
+var map = require('lodash/fp/map')
+var values = require('lodash/fp/values')
+var every = require('lodash/fp/every')
+var compose = require('lodash/fp/compose')
 
 function URLBuilder (baseURL) {
   this.baseURL = baseURL
-  this.params = []
+  this._params = []
 }
 
 URLBuilder.prototype = Object.create(Object.prototype)
 URLBuilder.prototype.constructor = URLBuilder
 
 URLBuilder.prototype.params = function (key, value) {
-  this.params.push({
+  this._params.push({
     [key]: value
   })
   return this
 }
 
 URLBuilder.prototype.build = function () {
-  var urls = _.chain(this.params)
-    .filter(function (item) {
-      return _.values(item).every(function (it) {
-        return it != null
-      })
-    })
-    .reduce(function (result, item) {
-      const urlMap = _.map(item, function (value, key) {
+  var _map = map.convert({ cap: false })
+  var urls = compose(
+    join('&'),
+    reduce(function (result, item) {
+      var urlMap = _map(function (value, key) {
         return '' + key + '=' + value
-      })
+      })(item)
       return result.concat(urlMap)
-    })
-    .join('&')
-    .value()
+    }, []),
+    filter(compose(
+      every(function (it) { return it != null && it.length !== 0 }),
+      values
+    ))
+  )(this._params)
   return '' + this.baseURL + '?' + urls
 }
 
