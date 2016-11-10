@@ -1,6 +1,6 @@
 {
   "name": "@apiep/url-builder",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Utility to made query parameter simple",
   "main": "index.js",
   "repository": {
