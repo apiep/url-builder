@@ -16,9 +16,9 @@ URLBuilder.prototype = Object.create(Object.prototype)
 URLBuilder.prototype.constructor = URLBuilder
 
 URLBuilder.prototype.params = function (key, value) {
-  this._params.push({
-    [key]: value
-  })
+  var obj = {}
+  obj[key] = value
+  this._params.push(obj)
   return this
 }
 
